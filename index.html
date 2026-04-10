@@ -1,1276 +1,1195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N Narasimha Pillai - Technical Educator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4F46E5',
-                        secondary: '#10B981',
-                        accent: '#F59E0B',
-                        dark: '#1F2937',
-                        light: '#F3F4F6',
-                    },
-                    fontFamily: {
-                        'poppins': ['Poppins', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-gradient {
-                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
-            }
-            .bg-gradient {
-                @apply bg-gradient-to-r from-primary to-accent;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>N. Narasimha Pillai — Technical Educator & Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════ */
+:root {
+  --white:    #ffffff;
+  --bg:       #f5f6f8;
+  --bg2:      #eef0f4;
+  --slate50:  #f8fafc;
+  --slate100: #f1f5f9;
+  --slate200: #e2e8f0;
+  --slate300: #cbd5e1;
+  --slate500: #64748b;
+  --slate700: #334155;
+  --slate900: #0f172a;
+  --ink:      #0d1b2a;
+  --indigo:   #3730a3;
+  --indigo2:  #4f46e5;
+  --indigo-lt:#ede9fe;
+  --indigo-md:#c7d2fe;
+  --teal:     #0d9488;
+  --teal-lt:  #ccfbf1;
+  --amber:    #d97706;
+  --amber-lt: #fef3c7;
+  --red-lt:   #fee2e2;
+  --red:      #dc2626;
+  --azure:    #0078d4;
+  --azure-lt: #dbeafe;
+
+  --ff-sans:  'Outfit', sans-serif;
+  --ff-serif: 'Fraunces', serif;
+  --ff-mono:  'JetBrains Mono', monospace;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.05);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:15px;}
+body{font-family:var(--ff-sans);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--slate100);}
+::-webkit-scrollbar-thumb{background:var(--indigo-md);border-radius:4px;}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+.topnav {
+  position: fixed; top:0; left:0; right:0; z-index:900;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--slate200);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 56px;
+  box-shadow: var(--shadow-sm);
+}
+.nav-brand {
+  display:flex; align-items:center; gap:.75rem;
+}
+.nav-monogram {
+  width:34px; height:34px; border-radius:8px;
+  background: var(--indigo2);
+  color:#fff; font-family:var(--ff-serif);
+  font-size:.95rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  letter-spacing:-.01em;
+}
+.nav-name {
+  font-size:.88rem; font-weight:600; color:var(--slate900);
+  letter-spacing:-.01em;
+}
+.nav-title-small {
+  font-size:.72rem; color:var(--slate500); font-weight:400;
+}
+.nav-links {
+  display:flex; gap:.25rem; list-style:none;
+}
+.nav-links a {
+  font-size:.78rem; font-weight:500; letter-spacing:.02em;
+  color:var(--slate500); padding:.35rem .75rem; border-radius:var(--r-sm);
+  transition: all .18s;
+}
+.nav-links a:hover {
+  color:var(--indigo2); background:var(--indigo-lt);
+}
+.nav-cta {
+  font-size:.78rem; font-weight:600; padding:.4rem 1.1rem;
+  background:var(--indigo2); color:#fff; border-radius:var(--r-sm);
+  transition: background .18s, transform .15s;
+}
+.nav-cta:hover { background:var(--indigo); transform:translateY(-1px); }
+
+/* ════════════════════════════════════════
+   HERO / HEADER CARD
+════════════════════════════════════════ */
+.hero-wrap {
+  margin-top:56px;
+  background: var(--white);
+  border-bottom: 1px solid var(--slate200);
+  position:relative; overflow:hidden;
+}
+.hero-accent-bar {
+  height:4px;
+  background: linear-gradient(90deg, var(--indigo2) 0%, #818cf8 50%, var(--teal) 100%);
+}
+.hero-inner {
+  max-width:1160px; margin:0 auto;
+  padding:3rem 2.5rem 2.5rem;
+  display:grid; grid-template-columns:auto 1fr auto;
+  gap:2rem; align-items:center;
+}
+.hero-avatar-col { position:relative; }
+.hero-avatar {
+  width:96px; height:96px; border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--white);
+  box-shadow: 0 0 0 3px var(--indigo-md), var(--shadow-md);
+}
+.hero-avatar-fallback {
+  width:96px; height:96px; border-radius:50%;
+  background: linear-gradient(135deg, var(--indigo2), #818cf8);
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.2rem;
+  box-shadow: 0 0 0 3px var(--indigo-md), var(--shadow-md);
+}
+.avail-dot {
+  position:absolute; bottom:4px; right:4px;
+  width:14px; height:14px; border-radius:50%;
+  background:#22c55e; border:2px solid #fff;
+}
+.hero-main { }
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--indigo2); margin-bottom:.6rem;
+}
+.hero-eyebrow::before {
+  content:''; width:20px; height:2px; background:var(--indigo2); border-radius:1px;
+}
+.hero-name {
+  font-family:var(--ff-serif); font-size:2rem; font-weight:700;
+  color:var(--slate900); line-height:1.15; letter-spacing:-.03em;
+  margin-bottom:.4rem;
+}
+.hero-role {
+  font-size:.92rem; color:var(--slate500); font-weight:400; margin-bottom:1rem;
+}
+.hero-role strong { color:var(--slate700); font-weight:600; }
+.hero-tags {
+  display:flex; flex-wrap:wrap; gap:.45rem;
+}
+.hero-tag {
+  font-size:.72rem; font-weight:500; padding:.25rem .75rem;
+  border-radius:100px; border:1px solid;
+}
+.tag-indigo { background:var(--indigo-lt); color:var(--indigo2); border-color:var(--indigo-md); }
+.tag-teal   { background:var(--teal-lt);   color:var(--teal);    border-color:#99f6e4; }
+.tag-amber  { background:var(--amber-lt);  color:var(--amber);   border-color:#fde68a; }
+.tag-azure  { background:var(--azure-lt);  color:var(--azure);   border-color:#bfdbfe; }
+
+.hero-stats-col {
+  display:flex; flex-direction:column; gap:.75rem; align-items:flex-end;
+}
+.hero-stat {
+  text-align:right;
+}
+.hero-stat-n {
+  font-family:var(--ff-serif); font-size:1.7rem; font-weight:700;
+  color:var(--indigo2); line-height:1;
+}
+.hero-stat-l {
+  font-size:.7rem; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--slate500); margin-top:.1rem;
+}
+.hero-divider-v {
+  width:1px; height:36px; background:var(--slate200); align-self:center;
+}
+
+.hero-contact-bar {
+  max-width:1160px; margin:0 auto;
+  padding:.75rem 2.5rem;
+  display:flex; align-items:center; gap:2rem;
+  border-top:1px solid var(--slate100);
+  font-size:.78rem; color:var(--slate500);
+}
+.hero-contact-item {
+  display:flex; align-items:center; gap:.45rem;
+}
+.hero-contact-item svg { flex-shrink:0; }
+.hero-contact-item a:hover { color:var(--indigo2); }
+
+/* ════════════════════════════════════════
+   MAIN LAYOUT
+════════════════════════════════════════ */
+.page-layout {
+  max-width:1160px; margin:0 auto;
+  padding:2rem 2.5rem;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:1.75rem;
+  align-items:start;
+}
+
+/* ════════════════════════════════════════
+   SIDEBAR
+════════════════════════════════════════ */
+.sidebar { display:flex; flex-direction:column; gap:1.25rem; }
+
+.side-card {
+  background:var(--white);
+  border:1px solid var(--slate200);
+  border-radius:var(--r-lg);
+  padding:1.25rem;
+  box-shadow:var(--shadow-sm);
+}
+.side-card-title {
+  font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--slate500); margin-bottom:1rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.side-card-title::after {
+  content:''; flex:1; height:1px; background:var(--slate200);
+}
+
+/* Skills list */
+.skill-group { margin-bottom:.9rem; }
+.skill-group:last-child { margin-bottom:0; }
+.skill-group-name {
+  font-size:.73rem; font-weight:600; color:var(--slate700);
+  margin-bottom:.4rem; letter-spacing:.03em;
+}
+.skill-pill-list {
+  display:flex; flex-wrap:wrap; gap:.3rem;
+}
+.skill-pill {
+  font-family:var(--ff-mono); font-size:.65rem;
+  padding:.2rem .5rem; border-radius:4px;
+  background:var(--slate100); color:var(--slate700);
+  border:1px solid var(--slate200);
+  transition: all .15s;
+}
+.skill-pill:hover { background:var(--indigo-lt); color:var(--indigo2); border-color:var(--indigo-md); }
+
+/* Cert badges */
+.cert-badge-item {
+  display:flex; align-items:flex-start; gap:.65rem;
+  padding:.65rem 0; border-bottom:1px solid var(--slate100);
+}
+.cert-badge-item:last-child { border-bottom:none; padding-bottom:0; }
+.cert-icon-sq {
+  width:32px; height:32px; border-radius:6px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; border:1px solid var(--slate200);
+}
+.cert-badge-text { flex:1; min-width:0; }
+.cert-badge-name { font-size:.78rem; font-weight:600; color:var(--slate800); line-height:1.3; }
+.cert-badge-org  { font-size:.69rem; color:var(--slate500); margin-top:.1rem; }
+.cert-az-pill {
+  display:inline-block; font-family:var(--ff-mono);
+  font-size:.63rem; font-weight:600;
+  padding:.12rem .45rem; border-radius:3px;
+  background:var(--azure-lt); color:var(--azure);
+  border:1px solid #bfdbfe; margin-right:.25rem;
+}
+
+/* Education mini */
+.edu-row {
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:.5rem 0; border-bottom:1px solid var(--slate100);
+  gap:.5rem;
+}
+.edu-row:last-child { border-bottom:none; padding-bottom:0; }
+.edu-deg { font-size:.78rem; font-weight:600; color:var(--slate800); }
+.edu-year { font-family:var(--ff-mono); font-size:.68rem; color:var(--slate500); flex-shrink:0; }
+.edu-inst { font-size:.69rem; color:var(--slate500); margin-top:.1rem; }
+.edu-pct  { font-family:var(--ff-mono); font-size:.68rem; color:var(--indigo2); font-weight:600; }
+
+/* ════════════════════════════════════════
+   MAIN CONTENT
+════════════════════════════════════════ */
+.main-col { display:flex; flex-direction:column; gap:1.5rem; }
+
+/* Section card */
+.section-card {
+  background:var(--white);
+  border:1px solid var(--slate200);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.sc-header {
+  padding:1rem 1.5rem;
+  border-bottom:1px solid var(--slate100);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.sc-title {
+  font-family:var(--ff-serif); font-size:1.05rem; font-weight:600;
+  color:var(--slate900); letter-spacing:-.01em;
+  display:flex; align-items:center; gap:.6rem;
+}
+.sc-title-icon {
+  width:26px; height:26px; border-radius:6px;
+  background:var(--indigo-lt);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.82rem;
+}
+.sc-count {
+  font-family:var(--ff-mono); font-size:.7rem;
+  background:var(--slate100); color:var(--slate500);
+  padding:.15rem .55rem; border-radius:100px; border:1px solid var(--slate200);
+}
+.sc-body { padding:1.25rem 1.5rem; }
+
+/* About paragraph */
+.about-text {
+  font-size:.88rem; color:var(--slate600); line-height:1.8;
+  margin-bottom:1rem;
+}
+.about-text:last-child { margin-bottom:0; }
+.about-highlight {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem;
+  margin-top:1.25rem;
+}
+.ahl-card {
+  padding:.9rem; border-radius:var(--r-md);
+  background:var(--slate50); border:1px solid var(--slate100);
+  text-align:center; transition:border-color .2s;
+}
+.ahl-card:hover { border-color:var(--indigo-md); }
+.ahl-n {
+  font-family:var(--ff-serif); font-size:1.5rem; font-weight:700;
+  color:var(--indigo2); line-height:1;
+}
+.ahl-l {
+  font-size:.68rem; font-weight:500; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--slate500); margin-top:.25rem;
+}
+
+/* ════════════════════════════════════════
+   TIMELINE (Experience)
+════════════════════════════════════════ */
+.timeline { display:flex; flex-direction:column; gap:0; }
+.tl-item {
+  display:grid; grid-template-columns:120px 1px 1fr;
+  gap:0 1.25rem;
+  position:relative;
+}
+.tl-date-col {
+  padding:.1rem 0 1.75rem;
+  text-align:right;
+}
+.tl-date {
+  font-family:var(--ff-mono); font-size:.68rem;
+  color:var(--slate500); line-height:1.4;
+}
+.tl-line-col {
+  display:flex; flex-direction:column; align-items:center; gap:0;
+}
+.tl-dot {
+  width:10px; height:10px; border-radius:50%; flex-shrink:0;
+  border:2px solid var(--indigo2); background:var(--white);
+  margin-top:.18rem; position:relative; z-index:1;
+  transition: background .2s;
+}
+.tl-item:hover .tl-dot { background:var(--indigo2); }
+.tl-line {
+  flex:1; width:1px; background:var(--slate200); margin-top:4px;
+}
+.tl-item:last-child .tl-line { display:none; }
+.tl-content { padding:.05rem 0 1.75rem; }
+.tl-role {
+  font-size:.9rem; font-weight:600; color:var(--slate900); margin-bottom:.2rem;
+}
+.tl-company {
+  font-size:.78rem; color:var(--indigo2); font-weight:500; margin-bottom:.45rem;
+}
+.tl-desc {
+  font-size:.8rem; color:var(--slate500); line-height:1.7; margin-bottom:.6rem;
+}
+.tl-tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+.tl-tag {
+  font-size:.67rem; font-weight:500;
+  padding:.18rem .55rem; border-radius:4px;
+  background:var(--slate100); color:var(--slate600); border:1px solid var(--slate200);
+}
+
+/* ════════════════════════════════════════
+   PROJECTS GRID
+════════════════════════════════════════ */
+.proj-cat-header {
+  display:flex; align-items:center; gap:.6rem;
+  padding:.6rem 1.5rem;
+  background:var(--slate50);
+  border-top:1px solid var(--slate100);
+  border-bottom:1px solid var(--slate100);
+}
+.proj-cat-header:first-child { border-top:none; }
+.proj-cat-num {
+  font-family:var(--ff-mono); font-size:.65rem; font-weight:600;
+  width:20px; height:20px; border-radius:4px;
+  background:var(--indigo2); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.proj-cat-name {
+  font-size:.78rem; font-weight:600; color:var(--slate700); letter-spacing:.02em;
+}
+.proj-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:1px; background:var(--slate100);
+}
+.proj-card {
+  background:var(--white); padding:1rem 1.25rem;
+  transition: background .18s;
+  cursor:default;
+}
+.proj-card:hover { background:var(--slate50); }
+.proj-title {
+  font-size:.83rem; font-weight:600; color:var(--slate800);
+  margin-bottom:.35rem; line-height:1.4;
+}
+.proj-desc {
+  font-size:.75rem; color:var(--slate500); line-height:1.6;
+  margin-bottom:.6rem;
+}
+.proj-tags { display:flex; flex-wrap:wrap; gap:.3rem; }
+.ptag {
+  font-family:var(--ff-mono); font-size:.62rem;
+  padding:.15rem .45rem; border-radius:3px;
+  background:var(--indigo-lt); color:var(--indigo); border:1px solid var(--indigo-md);
+}
+
+/* ════════════════════════════════════════
+   MENTORSHIP
+════════════════════════════════════════ */
+.mentor-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:1rem;
+}
+.mentor-card {
+  border-radius:var(--r-md); padding:1.1rem;
+  background:var(--slate50); border:1px solid var(--slate200);
+  transition: border-color .2s, box-shadow .2s;
+}
+.mentor-card:hover {
+  border-color:var(--indigo-md);
+  box-shadow: 0 4px 16px rgba(79,70,229,.08);
+}
+.mc-head {
+  display:flex; align-items:center; gap:.65rem; margin-bottom:.7rem;
+}
+.mc-icon {
+  width:32px; height:32px; border-radius:8px;
+  background:var(--indigo2); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:.95rem;
+  flex-shrink:0;
+}
+.mc-title {
+  font-size:.88rem; font-weight:600; color:var(--slate900);
+}
+.mc-desc {
+  font-size:.77rem; color:var(--slate500); line-height:1.65; margin-bottom:.75rem;
+}
+.mc-features { list-style:none; display:flex; flex-direction:column; gap:.4rem; }
+.mc-features li {
+  display:flex; align-items:center; gap:.5rem;
+  font-size:.76rem; color:var(--slate600);
+}
+.mc-features li::before {
+  content:'✓'; font-size:.65rem; font-weight:700;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--teal-lt); color:var(--teal);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  margin-top:2rem;
+  background:var(--slate900);
+  color:var(--slate300);
+}
+.footer-inner {
+  max-width:1160px; margin:0 auto;
+  padding:2rem 2.5rem;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:1.5rem;
+}
+.footer-brand-name {
+  font-family:var(--ff-serif); font-size:1rem; font-weight:600;
+  color:#fff; margin-bottom:.25rem;
+}
+.footer-brand-sub { font-size:.75rem; color:var(--slate500); }
+.footer-social { display:flex; gap:.6rem; }
+.footer-social a {
+  width:36px; height:36px; border-radius:8px;
+  border:1px solid #334155;
+  color:var(--slate400);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.85rem; transition: all .18s;
+}
+.footer-social a:hover { border-color:#6366f1; color:#818cf8; background:rgba(99,102,241,.1); }
+.footer-copy {
+  max-width:1160px; margin:0 auto;
+  padding:.75rem 2.5rem;
+  border-top:1px solid #1e293b;
+  font-size:.72rem; color:var(--slate600); text-align:center;
+}
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes slideDown {
+  from { opacity:0; transform:translateY(-10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.hero-wrap   { animation: slideDown .5s ease both; }
+.page-layout { animation: fadeUp .55s .1s ease both; }
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:900px){
+  .page-layout { grid-template-columns:1fr; }
+  .hero-inner  { grid-template-columns:auto 1fr; }
+  .hero-stats-col { display:none; }
+  .nav-links { display:none; }
+  .proj-grid { grid-template-columns:1fr; }
+  .about-highlight { grid-template-columns:repeat(3,1fr); }
+}
+@media(max-width:640px){
+  .hero-inner { grid-template-columns:1fr; text-align:center; }
+  .hero-avatar-col { margin:0 auto; }
+  .hero-eyebrow { justify-content:center; }
+  .hero-tags { justify-content:center; }
+  .about-highlight { grid-template-columns:1fr 1fr; }
+  .mentor-grid { grid-template-columns:1fr; }
+  .topnav { padding:0 1.25rem; }
+  .page-layout { padding:1.25rem; }
+}
+
+/* ════════════════════════════════════════
+   MISC HELPERS
+════════════════════════════════════════ */
+.slate600 { color: #475569; }
+</style>
 </head>
-<body class="font-poppins bg-light text-dark">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white/80 backdrop-blur-sm shadow-sm z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-gradient">N. Narasimha</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="hover:text-primary transition-colors">About</a>
-                    <a href="#skills" class="hover:text-primary transition-colors">Skills</a>
-                    <a href="#experience" class="hover:text-primary transition-colors">Experience</a>
-                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
-                    <a href="#mentorship" class="hover:text-primary transition-colors">Mentorship</a>
-                    <a href="#footer" class="hover:text-primary transition-colors">Contact</a>
-                </div>
-                <button class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
-                alt="Background" 
-                class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-dark/60"></div>
+<!-- ═══════════════════════════════════
+  TOPNAV
+════════════════════════════════════ -->
+<nav class="topnav">
+  <div class="nav-brand">
+    <div class="nav-monogram">NP</div>
+    <div>
+      <div class="nav-name">N. Narasimha Pillai</div>
+      <div class="nav-title-small">Technical Educator · Full Stack Developer</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about-sec">About</a></li>
+    <li><a href="#exp-sec">Experience</a></li>
+    <li><a href="#projects-sec">Projects</a></li>
+    <li><a href="#mentor-sec">Mentorship</a></li>
+  </ul>
+  <a href="mailto:narasimhaethics@gmail.com" class="nav-cta">Contact Me</a>
+</nav>
+
+<!-- ═══════════════════════════════════
+  HERO
+════════════════════════════════════ -->
+<div class="hero-wrap">
+  <div class="hero-accent-bar"></div>
+  <div class="hero-inner">
+    <!-- Avatar -->
+    <div class="hero-avatar-col">
+      <img src="images/pic1.jpeg" alt="N. Narasimha Pillai" class="hero-avatar"
+           onerror="this.style.display='none';document.getElementById('av-fallback').style.display='flex'"/>
+      <div id="av-fallback" class="hero-avatar-fallback" style="display:none;">🎓</div>
+      <div class="avail-dot"></div>
+    </div>
+    <!-- Info -->
+    <div class="hero-main">
+      <div class="hero-eyebrow">Technical Educator & Mentor</div>
+      <h1 class="hero-name">N. Narasimha Pillai</h1>
+      <p class="hero-role">
+        <strong>M.Tech (CSE)</strong> · Bytexl Teched · 9+ Years in Tech Education
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag tag-indigo">Full Stack Dev</span>
+        <span class="hero-tag tag-azure">AZ-900 · AZ-104</span>
+        <span class="hero-tag tag-teal">DSA Mentor</span>
+        <span class="hero-tag tag-amber">6K+ Students</span>
+      </div>
+    </div>
+    <!-- Stats -->
+    <div class="hero-stats-col">
+      <div class="hero-stat">
+        <div class="hero-stat-n">9+</div>
+        <div class="hero-stat-l">Years Teaching</div>
+      </div>
+      <div class="hero-divider-v"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">6K+</div>
+        <div class="hero-stat-l">Students Taught</div>
+      </div>
+      <div class="hero-divider-v"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">50+</div>
+        <div class="hero-stat-l">Projects Mentored</div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact bar -->
+  <div class="hero-contact-bar">
+    <div class="hero-contact-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="mailto:narasimhaethics@gmail.com">narasimhaethics@gmail.com</a>
+    </div>
+    <div class="hero-contact-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013.01-.4c1.02.005 2.05.14 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      <a href="https://github.com/narasimhaethics" target="_blank">github.com/narasimhaethics</a>
+    </div>
+    <div class="hero-contact-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+      <span>Bytexl Teched Private Limited · Dec 2022–Present</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+  PAGE LAYOUT
+════════════════════════════════════ -->
+<div class="page-layout">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+
+    <!-- Skills -->
+    <div class="side-card">
+      <div class="side-card-title">Technical Skills</div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-pill-list">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">C/C++</span>
+          <span class="skill-pill">JSP</span>
+          <span class="skill-pill">HTML/CSS</span>
         </div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <!-- Profile Image -->
-            <div class="mb-8">
-                <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
-                    <img src="images/pic1.jpeg" 
-                        alt="N. Narasimha Pillai" 
-                        class="w-full h-full object-cover"
-                        onerror="this.src='https://via.placeholder.com/200'">
-                </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Frameworks</div>
+        <div class="skill-pill-list">
+          <span class="skill-pill">Django</span>
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Angular</span>
+          <span class="skill-pill">Vue.js</span>
+          <span class="skill-pill">Bootstrap</span>
+          <span class="skill-pill">Materialize</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Databases</div>
+        <div class="skill-pill-list">
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">MongoDB</span>
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Oracle 11g</span>
+          <span class="skill-pill">MS Access</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Cloud & DevOps</div>
+        <div class="skill-pill-list">
+          <span class="skill-pill">AWS</span>
+          <span class="skill-pill">Azure</span>
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Jenkins</span>
+          <span class="skill-pill">Kafka</span>
+          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">Grafana</span>
+          <span class="skill-pill">Prometheus</span>
+          <span class="skill-pill">Loki</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Tools</div>
+        <div class="skill-pill-list">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Postman</span>
+          <span class="skill-pill">REST API</span>
+          <span class="skill-pill">WebSockets</span>
+          <span class="skill-pill">MS Office</span>
+          <span class="skill-pill">Linux</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="side-card">
+      <div class="side-card-title">Certifications</div>
+
+      <div class="cert-badge-item">
+        <div class="cert-icon-sq" style="background:#f0fdf4;border-color:#bbf7d0;">🟢</div>
+        <div class="cert-badge-text">
+          <div class="cert-badge-name">Problem Solving · SE · SQL · Java · React</div>
+          <div class="cert-badge-org">HackerRank Platform Certifications</div>
+        </div>
+      </div>
+
+      <div class="cert-badge-item">
+        <div class="cert-icon-sq" style="background:#eff6ff;border-color:#bfdbfe;">☁️</div>
+        <div class="cert-badge-text">
+          <div class="cert-badge-name">
+            <span class="cert-az-pill">AZ-900</span>
+            Azure Fundamentals
+          </div>
+          <div class="cert-badge-org">Microsoft · Cloud Concepts & Core Services</div>
+        </div>
+      </div>
+
+      <div class="cert-badge-item">
+        <div class="cert-icon-sq" style="background:#eff6ff;border-color:#bfdbfe;">🔷</div>
+        <div class="cert-badge-text">
+          <div class="cert-badge-name">
+            <span class="cert-az-pill">AZ-365</span>
+            Designing Microsoft Azure Infrastructure Solutions
+          </div>
+          <div class="cert-badge-org">Microsoft · Governance, Compute & Networking</div>
+        </div>
+      </div>
+
+      <div class="cert-badge-item">
+        <div class="cert-icon-sq" style="background:#fefce8;border-color:#fef08a;">🔍</div>
+        <div class="cert-badge-text">
+          <div class="cert-badge-name">Online Marketing Fundamentals</div>
+          <div class="cert-badge-org">Google Digital Garage · SEO, SEM, Analytics</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="side-card">
+      <div class="side-card-title">Education</div>
+
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">M.Tech — CSE</div>
+          <div class="edu-inst">SVPCET · JNTUA</div>
+        </div>
+        <div style="text-align:right">
+          <div class="edu-year">2022</div>
+          <div class="edu-pct">80%</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">B.Tech — CSE</div>
+          <div class="edu-inst">SVPCET · JNTUA</div>
+        </div>
+        <div style="text-align:right">
+          <div class="edu-year">2017</div>
+          <div class="edu-pct">66%</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">Diploma — CME</div>
+          <div class="edu-inst">Govt. Polytechnic, Nagari · SBTET</div>
+        </div>
+        <div style="text-align:right">
+          <div class="edu-year">2014</div>
+          <div class="edu-pct">78%</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-deg">S.S.C</div>
+          <div class="edu-inst">Z.P. High School, Puttur · State Board</div>
+        </div>
+        <div style="text-align:right">
+          <div class="edu-year">2011</div>
+          <div class="edu-pct">83%</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="main-col">
+
+    <!-- ABOUT -->
+    <div class="section-card" id="about-sec">
+      <div class="sc-header">
+        <div class="sc-title">
+          <div class="sc-title-icon">👤</div>
+          About Me
+        </div>
+      </div>
+      <div class="sc-body">
+        <p class="about-text">I am <strong>N. Narasimha Pillai</strong>, a dedicated Technical Educator and Full Stack Developer with a passion for both teaching and building innovative software solutions. With extensive experience in computer science education, I specialize in making complex technical concepts accessible, engaging, and industry-ready.</p>
+        <p class="about-text">My teaching philosophy is anchored in practical, hands-on learning — reinforced through active development work. As a Full Stack Developer, I bring genuine industry experience into the classroom, ensuring students learn the skills and best practices that actually matter in the job market.</p>
+        <p class="about-text" style="margin-bottom:0">Currently serving as a Technical Educator at <strong>Bytexl Teched</strong>, I continue to mentor, build, and innovate — bridging the gap between academia and industry every single day, and helping students land careers they're proud of.</p>
+        <div class="about-highlight">
+          <div class="ahl-card">
+            <div class="ahl-n">9+</div>
+            <div class="ahl-l">Years Teaching</div>
+          </div>
+          <div class="ahl-card">
+            <div class="ahl-n">6K+</div>
+            <div class="ahl-l">Students Taught</div>
+          </div>
+          <div class="ahl-card">
+            <div class="ahl-n">50+</div>
+            <div class="ahl-l">Projects Mentored</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section-card" id="exp-sec">
+      <div class="sc-header">
+        <div class="sc-title">
+          <div class="sc-title-icon">💼</div>
+          Professional Experience
+        </div>
+        <span class="sc-count">6 roles</span>
+      </div>
+      <div class="sc-body">
+        <div class="timeline">
+
+          <!-- 1. Current role -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">Dec 2022<br>— Present</div>
             </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Technical Educator</div>
+              <div class="tl-company">Bytexl Teched Private Limited</div>
+              <div class="tl-desc">Full-time technical educator specializing in programming and software development training. Delivering high-quality education and mentoring students across various languages, frameworks, and cloud platforms.</div>
+              <div class="tl-tags">
+                <span class="tl-tag">Full-time</span><span class="tl-tag">Cloud</span><span class="tl-tag">DSA</span><span class="tl-tag">Mentorship</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. NEW — Freelance IT Manager, TCS iON Zone -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">Mar 2019<br>— Nov 2022</div>
+            </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Freelance IT Manager</div>
+              <div class="tl-company">TCS iON Zone</div>
+              <div class="tl-desc">Managed IT operations and infrastructure at TCS iON examination centers. Oversaw smooth execution of computer-based assessments, coordinated technical setups, ensured network reliability, and provided on-site troubleshooting and support for large-scale online examinations.</div>
+              <div class="tl-tags">
+                <span class="tl-tag">IT Management</span><span class="tl-tag">Network Admin</span><span class="tl-tag">TCS iON</span><span class="tl-tag">Exam Operations</span><span class="tl-tag">Technical Support</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. College trainer -->
+          <!-- <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">Jan 2019<br>— Oct 2022</div>
+            </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Programming Language Trainer</div>
+              <div class="tl-company">Sri Venkatesa Perumal College of Engg. & Tech.</div>
+              <div class="tl-desc">Taught programming and software development to engineering students. Developed curriculum, conducted hands-on training, mentored projects, and provided career guidance.</div>
+              <div class="tl-tags"><span class="tl-tag">Curriculum Dev</span><span class="tl-tag">Project Mentoring</span><span class="tl-tag">Career Guidance</span></div>
+            </div>
+          </div> -->
+
+          <!-- 4. NEW — Consultant Project Manager -->
+          <!--<div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date"> 2018<br>— Dec 2022</div>
+            </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Consultant Project Manager</div>
+              <div class="tl-company">Independent Consultant(Oracle)</div>
+              <div class="tl-desc">Provided end-to-end project management consultancy for software development engagements. Defined project scope, timelines, and deliverables; coordinated cross-functional teams; managed client relationships; and ensured on-time delivery of full-stack web and application projects.</div>
+              <div class="tl-tags">
+                <span class="tl-tag">Project Management</span><span class="tl-tag">Client Relations</span><span class="tl-tag">Agile</span><span class="tl-tag">Full Stack</span><span class="tl-tag">Consulting</span>
+              </div>
+            </div>
+          </div>--->
+
+          <!-- 5. Freelance trainer -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">Jan 2018<br>— Nov 2022</div>
+            </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Freelance Corporate Technical Trainer &amp; Consultant Project Manager</div>
+              <div class="tl-company">Independent (IBM, Oracle, Mindtree)</div>
+              <div class="tl-desc">Provided comprehensive training in Java & DSA, Python/Django/Flask, MERN Stack, Data Science, C++, and MySQL to individuals and groups.</div>
+              <div class="tl-desc">Provided end-to-end project management consultancy for software development engagements. Defined project scope, timelines, and deliverables; coordinated cross-functional teams; managed client relationships; and ensured on-time delivery of full-stack web and application projects.</div>
+             
+			  <div class="tl-tags"><span class="tl-tag">Java/DSA</span><span class="tl-tag">Python</span><span class="tl-tag">MERN Stack</span><span class="tl-tag">Data Science</span></div>
             
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">
-                <span class="text-gradient">N. Narasimha Pillai</span>
-                <br>Technical Educator & Mentor
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8">
-                Empowering Students Through Technology Education
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#projects" class="px-8 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-dark transition-all">
-                    View Projects
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">About Me</h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="relative">
-                    <div class="relative">
-                        <div class="w-full h-[700px] rounded-[50px] mx-auto overflow-hidden border-4 border-white shadow-2xl transform transition-transform hover:scale-[1.02] duration-300">
-                            <img src="images/pic2.jpeg" 
-                                alt="N. Narasimha Pillai" 
-                                class="w-full h-full object-cover object-center"
-                                style="object-fit: cover; width: 100%; height: 100%;"
-                                onerror="this.src='https://via.placeholder.com/400'">
-                        </div>
-                        <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white px-8 py-3 rounded-full shadow-lg">
-                            <h3 class="text-xl font-semibold text-primary">Technical Educator & Developer</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="space-y-8">
-                    <div class="bg-white rounded-xl shadow-xl p-8 transform transition-transform hover:scale-[1.02] duration-300">
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            I am N. Narasimha Pillai, a dedicated Technical Educator and Full Stack Developer with a passion for both teaching and building innovative software solutions. With extensive experience in computer science education and software development, I specialize in making complex technical concepts accessible and engaging for students while creating robust, scalable applications.
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed mt-4">
-                            My teaching philosophy focuses on practical, hands-on learning and real-world applications, which I reinforce through my active development work. As a Full Stack Developer, I bring real-world experience into the classroom, ensuring students learn industry-relevant skills and best practices.
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all hover:scale-105 duration-300 border-t-4 border-primary">
-                            <div class="text-center">
-                                <h3 class="text-3xl font-bold text-primary mb-2">8+</h3>
-                                <p class="text-gray-600 text-sm">Years of Teaching Experience</p>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all hover:scale-105 duration-300 border-t-4 border-secondary">
-                            <div class="text-center">
-                                <h3 class="text-3xl font-bold text-secondary mb-2">5000+</h3>
-                                <p class="text-gray-600 text-sm">Students Taught</p>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-xl shadow-lg transform transition-all hover:scale-105 duration-300 border-t-4 border-accent">
-                            <div class="text-center">
-                                <h3 class="text-3xl font-bold text-accent mb-2">3+</h3>
-                                <p class="text-gray-600 text-sm">Courses Developed</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Academic Qualifications Section -->
-    <section id="education" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Academic Qualifications</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white rounded-lg overflow-hidden shadow-sm">
-                    <thead class="bg-primary text-white">
-                        <tr>
-                            <th class="px-6 py-4 text-left">Course</th>
-                            <th class="px-6 py-4 text-left">Institution</th>
-                            <th class="px-6 py-4 text-left">Board / University</th>
-                            <th class="px-6 py-4 text-left">Year</th>
-                            <th class="px-6 py-4 text-left">Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-light transition-colors">
-                            <td class="px-6 py-4">
-                                <span class="font-semibold">M.Tech</span>
-                                <span class="text-gray-600 block text-sm">(CSE)</span>
-                            </td>
-                            <td class="px-6 py-4">Sri Venkatesa Perumal College of Engineering and Technology</td>
-                            <td class="px-6 py-4">JNTUA</td>
-                            <td class="px-6 py-4">2022</td>
-                            <td class="px-6 py-4">80%</td>
-                        </tr>
-                        <tr class="hover:bg-light transition-colors">
-                            <td class="px-6 py-4">
-                                <span class="font-semibold">B.Tech</span>
-                                <span class="text-gray-600 block text-sm">(CSE)</span>
-                            </td>
-                            <td class="px-6 py-4">Sri Venkatesa Perumal College of Engineering and Technology</td>
-                            <td class="px-6 py-4">JNTUA</td>
-                            <td class="px-6 py-4">2017</td>
-                            <td class="px-6 py-4">66%</td>
-                        </tr>
-                        <tr class="hover:bg-light transition-colors">
-                            <td class="px-6 py-4">
-                                <span class="font-semibold">Diploma</span>
-                                <span class="text-gray-600 block text-sm">(CME)</span>
-                            </td>
-                            <td class="px-6 py-4">Govt. Polytechnic, Pillaripattu, Nagari</td>
-                            <td class="px-6 py-4">SBTET</td>
-                            <td class="px-6 py-4">2014</td>
-                            <td class="px-6 py-4">78%</td>
-                        </tr>
-                        <tr class="hover:bg-light transition-colors">
-                            <td class="px-6 py-4">
-                                <span class="font-semibold">S.S.C</span>
-                            </td>
-                            <td class="px-6 py-4">Z.P. High School, Puttur</td>
-                            <td class="px-6 py-4">State Board</td>
-                            <td class="px-6 py-4">2011</td>
-                            <td class="px-6 py-4">83%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-light">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Technical Skills</h2>
+            <span class="tl-tag">Project Management</span><span class="tl-tag">Client Relations</span><span class="tl-tag">Agile</span><span class="tl-tag">Full Stack</span><span class="tl-tag">Consulting</span>
             
-            <!-- Programming Languages -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-semibold mb-6 text-primary">Programming Languages</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        HTML, CSS, JavaScript & jQuery
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        Java & JSP
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        MERN
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        Python & Django/Flask
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        PHP
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                        C/C++
-                    </div>
-                </div>
-            </div>
+			</div>
+          </div>
 
-            <!-- Databases -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-semibold mb-6 text-secondary">Databases</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                        MySQL
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                        Oracle 11g
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                        MongoDB
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                        MS Access
-                    </div>
-                </div>
+          <!-- 6. WatNx -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">Dec 2017<br>— Dec 2018</div>
             </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Full Stack Developer & Django Trainer</div>
+              <div class="tl-company">WatNx Consulting Pvt. Ltd., Bangalore</div>
+              <div class="tl-desc">Built full-stack Django applications, conducted internal training, worked on web app development, database design, and API integration. Mentored junior developers.</div>
+              <div class="tl-tags"><span class="tl-tag">Django</span><span class="tl-tag">Full Stack</span><span class="tl-tag">API Integration</span></div>
+            </div>
+          </div>
 
-            <!-- Cloud Platforms -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-semibold mb-6 text-accent">Cloud Platforms</h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-accent rounded-full mr-2"></span>
-                        AWS
-                    </div>
-                    <div class="flex items-center">
-                        <span class="w-2 h-2 bg-accent rounded-full mr-2"></span>
-                        Azure
-                    </div>
-                </div>
+          <!-- 7. Honchi -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">May 2017<br>— Nov 2017</div>
             </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Frontend Developer</div>
+              <div class="tl-company">Honchi Solutions Pvt Ltd, Bangalore</div>
+              <div class="tl-desc">Implemented responsive UIs and interactive web applications. Collaborated with design and backend teams.</div>
+              <div class="tl-tags"><span class="tl-tag">HTML/CSS/JS</span><span class="tl-tag">Responsive Design</span></div>
+            </div>
+          </div>
 
-            <!-- Other Skills -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-primary">Operating Systems</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                            Windows
-                        </div>
-                        <div class="flex items-center">
-                            <span class="w-2 h-2 bg-primary rounded-full mr-2"></span>
-                            Linux
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-secondary">MS Office</h3>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            MS Office Suite
-                        </div>
-                    </div>
-                </div>
+          <!-- 8. Varalakshmi -->
+          <div class="tl-item">
+            <div class="tl-date-col">
+              <div class="tl-date">6-Month<br>Training</div>
             </div>
+            <div class="tl-line-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-role">Service Adviser & Warranty In-charge</div>
+              <div class="tl-company">Varalakshmi Automobiles Pvt. Ltd., Tirupathi</div>
+              <div class="tl-desc">Training in CRMDMS. Customer service, warranty management, and automotive service operations.</div>
+              <div class="tl-tags"><span class="tl-tag">CRM</span><span class="tl-tag">Customer Service</span></div>
+            </div>
+          </div>
+
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Certifications</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- HackerRank Certifications -->
-                <div class="bg-light p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/HackerRank_Icon-1000px.png" 
-                            alt="HackerRank" 
-                            class="w-12 h-12 mr-4">
-                        <h3 class="text-xl font-semibold">HackerRank Certifications</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Problem Solving in Python - Data Structures & Algorithms</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Software Engineering - REST API, Python, SQL</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>SQL Advanced - PL/SQL & Stored Procedures</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Java - Object-Oriented Programming</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>ReactJS - Frontend Development</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Google Certifications -->
-                <div class="bg-light p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <img src="images/pic3.png" 
-                            alt="Google" 
-                            class="w-12 h-12 mr-4">
-                        <h3 class="text-xl font-semibold">Google Digital Garage</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-primary mt-1 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Online Marketing Fundamentals - SEO, SEM, Social Media, Analytics</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <!-- PROJECTS -->
+    <div class="section-card" id="projects-sec">
+      <div class="sc-header">
+        <div class="sc-title">
+          <div class="sc-title-icon">🗂️</div>
+          Projects & Work
         </div>
-    </section>
+        <span class="sc-count">50+ projects</span>
+      </div>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Professional Experience</h2>
-            <div class="space-y-8">
-                <!-- Current Role -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-primary">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Technical Educator</h3>
-                            <p class="text-primary">Bytexl India Private Limited</p>
-                        </div>
-                        <span class="text-gray-500">December 2022 - Present</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Full-time technical educator specializing in programming and software development training. Focused on delivering high-quality technical education and mentoring students in various programming languages and frameworks.
-                    </p>
-                </div>
-
-                <!-- Freelance Experience -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-secondary">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Freelance Technical Trainer</h3>
-                            <p class="text-secondary">Independent</p>
-                        </div>
-                        <span class="text-gray-500">May 2018 - December 2022</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Providing comprehensive training in various programming languages and technologies:
-                    </p>
-                    <ul class="mt-2 grid grid-cols-2 md:grid-cols-3 gap-2">
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            Java & Data Structures
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            Python & Django/Flask
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            MEAN Stack Development
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            Data Science & Analytics
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            C++ Programming
-                        </li>
-                        <li class="flex items-center">
-                            <span class="w-2 h-2 bg-secondary rounded-full mr-2"></span>
-                            MySQL & Database Design
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- College Experience -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-accent">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Programming Language Trainer</h3>
-                            <p class="text-accent">Sri Venkatesa Perumal College of Engineering and Technology</p>
-                        </div>
-                        <span class="text-gray-500">January 2019 - October 2022</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Taught programming languages and software development concepts to engineering students. Developed curriculum and conducted hands-on training sessions in various programming languages and technologies. Mentored students in project development and career guidance.
-                    </p>
-                </div>
-
-                <!-- WatNx Experience -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-primary">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Full Stack Developer & Django Trainer</h3>
-                            <p class="text-primary">WatNx Consulting Pvt. Ltd., Bangalore</p>
-                        </div>
-                        <span class="text-gray-500">August 2017 - December 2018</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Developed full-stack applications using Django and conducted training sessions for team members. Worked on web application development, database design, and API integration. Mentored junior developers and conducted technical workshops.
-                    </p>
-                </div>
-
-                <!-- Honchi Solutions Experience -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-secondary">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Frontend Developer</h3>
-                            <p class="text-secondary">Honchi Solutions Pvt Ltd, Bangalore</p>
-                        </div>
-                        <span class="text-gray-500">May 2017 - August 2017</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Worked on frontend development projects, implementing responsive user interfaces and interactive web applications. Collaborated with design and backend teams to deliver high-quality web solutions.
-                    </p>
-                </div>
-
-                <!-- Training Experience -->
-                <div class="bg-light p-6 rounded-lg border-l-4 border-accent">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-semibold">Service Adviser & Warranty In-charge</h3>
-                            <p class="text-accent">Varalakshmi Automobiles Pvt. Ltd., Tirupathi</p>
-                        </div>
-                        <span class="text-gray-500">6 months training</span>
-                    </div>
-                    <p class="mt-4 text-gray-600">
-                        Completed training program as Service Adviser and Warranty In-charge (CRMDMS). Gained experience in customer service, warranty management, and service operations in the automotive industry.
-                    </p>
-                </div>
-            </div>
+      <!-- 01 Academic -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">01</div>
+        <div class="proj-cat-name">Academic Projects</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-title">Intelligent Random Question Paper Generator</div>
+          <div class="proj-desc">Automated balanced question paper generation with intelligent difficulty distribution.</div>
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Django</span><span class="ptag">MySQL</span></div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-light">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Projects</h2>
-            
-            <!-- Academic Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-primary">Academic Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Intelligent Random Question Paper Generator</h3>
-                    <p class="text-gray-600 mb-4">Automated system for generating balanced question papers with intelligent question selection and difficulty distribution</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">TC Generator</h3>
-                    <p class="text-gray-600 mb-4">Desktop application for generating Transfer Certificates based on student ID</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">VB.NET</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Student Information System</h3>
-                    <p class="text-gray-600 mb-4">Comprehensive platform for managing student data and academic activities</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Java</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">JSP</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Online Library Management</h3>
-                    <p class="text-gray-600 mb-4">Digital platform for cataloging and managing library resources</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Java</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Bootstrap</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Two-Factor Data Security</h3>
-                    <p class="text-gray-600 mb-4">Cloud storage security system with dual authentication</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">JSP</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">AI Chatbot</h3>
-                    <p class="text-gray-600 mb-4">Interactive chatbot using AIML for natural conversations</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">AIML</span>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Recruitment Management System</h3>
-                    <p class="text-gray-600 mb-4">End-to-end solution for talent acquisition and management</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">AngularJS</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Freelance Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-secondary">Freelance Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Honchi Website</h3>
-                    <p class="text-gray-600">Full stack development for client requirements</p>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">Redington Info Systems</h3>
-                    <p class="text-gray-600">Template design and implementation</p>
-                </div>
-
-                <div class="bg-white rounded-lg overflow-hidden shadow-sm p-6">
-                    <h3 class="text-xl font-semibold mb-2">SVPCET Portals</h3>
-                    <p class="text-gray-600">Result, Grievances, and AAvishkaar portals</p>
-                </div>
-            </div>
+        <div class="proj-card">
+          <div class="proj-title">Student Information System</div>
+          <div class="proj-desc">Comprehensive platform for managing student data and academic activities.</div>
+          <div class="proj-tags"><span class="ptag">Java</span><span class="ptag">JSP</span><span class="ptag">MySQL</span></div>
         </div>
-    </section>
-
-    <!-- Mentored Projects Section -->
-    <section id="mentored-projects" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Mentored Projects</h2>
-            
-            <!-- Data Structures & Algorithms Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-primary">Data Structures & Algorithms Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Optimized Pathfinding Visualizer</h3>
-                    <p class="text-gray-600 mb-4">Interactive visualization of A*, Dijkstra, and Bellman-Ford algorithms with real-time animations</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">D3.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Flask</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Stock Price Prediction Using Trees</h3>
-                    <p class="text-gray-600 mb-4">Analysis of stock trends using Segment Trees and AVL Trees for price prediction</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Pandas</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Smart Route Planner</h3>
-                    <p class="text-gray-600 mb-4">Graph-based route optimization using A* and Dijkstra's algorithms</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Neo4j</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Load Balancer Simulator</h3>
-                    <p class="text-gray-600 mb-4">Simulation of Round Robin, Least Connections, and Weighted Load Balancing</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Redis</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Smart Caching System</h3>
-                    <p class="text-gray-600 mb-4">Implementation of LFU, LRU, and MRU caching algorithms</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Redis</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Graphs, Hashing & Backtracking Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-accent">Graphs, Hashing & Backtracking Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Optimized Faculty Substitution Algorithm</h3>
-                    <p class="text-gray-600 mb-4">Dynamic faculty leave management system using priority queues and graph-based scheduling</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graphs</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Dijkstra's</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Heaps</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">AI-Based Course Allocation</h3>
-                    <p class="text-gray-600 mb-4">Optimal faculty-course assignment using weighted bipartite graph matching</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graphs</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Hungarian</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">DP</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Student Performance Prediction</h3>
-                    <p class="text-gray-600 mb-4">Trie-based academic record management with efficient prefix querying</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Trie</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Hashing</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Automated Timetable Scheduling</h3>
-                    <p class="text-gray-600 mb-4">Conflict-free timetable generation using backtracking and graph coloring</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Backtracking</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graph Coloring</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Real-Time Attendance System</h3>
-                    <p class="text-gray-600 mb-4">Efficient attendance tracking using Bloom Filters and hashing</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Bloom Filters</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Hashing</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Faculty Leave Management</h3>
-                    <p class="text-gray-600 mb-4">AI-based faculty substitution and scheduling optimization system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graphs</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Priority Queue</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Adaptive E-Learning System</h3>
-                    <p class="text-gray-600 mb-4">AI-based learning system with dynamic course recommendations</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Trie</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graphs</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">College Event Scheduler</h3>
-                    <p class="text-gray-600 mb-4">Smart event scheduling with optimized venue allocation</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graph Coloring</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Backtracking</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Campus Navigation System</h3>
-                    <p class="text-gray-600 mb-4">Graph-based shortest path finding for campus navigation</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Dijkstra's</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">A* Search</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Exam Seating Arrangement</h3>
-                    <p class="text-gray-600 mb-4">Dynamic seating arrangement generation for exams</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Graph Coloring</span>
-                        <span class="px-3 py-1 bg-accent bg-opacity-10 text-accent rounded-full text-sm">Hashing</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tree Data Structure Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-primary">Tree Data Structure Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Organization Hierarchy Management</h3>
-                    <p class="text-gray-600 mb-4">Tree-based system for managing organizational structure with visualization</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Family Tree Generator</h3>
-                    <p class="text-gray-600 mb-4">Interactive platform for creating and visualizing family trees</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">BST Visualizer</h3>
-                    <p class="text-gray-600 mb-4">Interactive visualization of Binary Search Tree operations</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">File System Explorer</h3>
-                    <p class="text-gray-600 mb-4">Tree-based file navigation system with role-based access</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Express</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Course Prerequisite Tree</h3>
-                    <p class="text-gray-600 mb-4">DAG-based course dependency visualization system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Spring Boot</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Decision Tree Chatbot</h3>
-                    <p class="text-gray-600 mb-4">Tree-based chatbot with NLP integration</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Neo4j</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Employee Reporting System</h3>
-                    <p class="text-gray-600 mb-4">Tree-based employee hierarchy management</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Dynamic Menu Management</h3>
-                    <p class="text-gray-600 mb-4">Nested menu system with tree structure</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Laravel</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Genealogy & Ancestry Tree</h3>
-                    <p class="text-gray-600 mb-4">Interactive family tree visualization platform</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Firebase</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Threaded Discussion Forum</h3>
-                    <p class="text-gray-600 mb-4">Tree-based comment system with nested replies</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">AI-Based FAQ System</h3>
-                    <p class="text-gray-600 mb-4">Decision tree-based smart FAQ platform</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Neo4j</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Directory Tree Visualizer</h3>
-                    <p class="text-gray-600 mb-4">Web-based file manager with tree structure</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Svelte.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">E-Learning Course Structure</h3>
-                    <p class="text-gray-600 mb-4">Prerequisite-based course recommendation system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Spring Boot</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Medical Diagnosis System</h3>
-                    <p class="text-gray-600 mb-4">Decision tree-based medical diagnosis platform</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">API Rate Limiting System</h3>
-                    <p class="text-gray-600 mb-4">Tree-based token bucket rate limiting</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Express</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Redis</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Smart City Infrastructure</h3>
-                    <p class="text-gray-600 mb-4">Tree-based city planning and management system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Neo4j</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Project Task Dependency</h3>
-                    <p class="text-gray-600 mb-4">Tree-based task management system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">Express</span>
-                        <span class="px-3 py-1 bg-primary bg-opacity-10 text-primary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scientific & AI Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-secondary">Scientific & AI Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Scientific Calculator</h3>
-                    <p class="text-gray-600 mb-4">Advanced calculator with expression evaluation using stack and recursion</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Stack</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Genetic Algorithm Optimizer</h3>
-                    <p class="text-gray-600 mb-4">Optimization system using genetic algorithms and dynamic programming</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Graphs</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">AI-Based Drug Discovery</h3>
-                    <p class="text-gray-600 mb-4">Molecular structure analysis using graph algorithms</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">MongoDB</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">DFS/BFS</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Chemistry Formula Solver</h3>
-                    <p class="text-gray-600 mb-4">Equation parsing and solving using tree structures</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Trees</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Weather Prediction System</h3>
-                    <p class="text-gray-600 mb-4">Time series analysis and weather forecasting</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Queues</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Quantum Physics Simulation</h3>
-                    <p class="text-gray-600 mb-4">Quantum state simulation with matrix operations</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Matrix</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Astronomy Data Visualizer</h3>
-                    <p class="text-gray-600 mb-4">Celestial data visualization and analysis</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">D3.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Graphs</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Neural Network Visualizer</h3>
-                    <p class="text-gray-600 mb-4">Interactive visualization of neural network architectures</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Linked Lists</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Smart Agriculture System</h3>
-                    <p class="text-gray-600 mb-4">IoT-based agricultural monitoring and optimization</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React Native</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Graphs</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Pathogen Spread Simulation</h3>
-                    <p class="text-gray-600 mb-4">Epidemic spread modeling using graph algorithms</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">D3.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">BFS/DFS</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">DNA Sequence Matcher</h3>
-                    <p class="text-gray-600 mb-4">Efficient DNA sequence matching using KMP algorithm</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Next.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Trie</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Bioinformatics Data Processor</h3>
-                    <p class="text-gray-600 mb-4">Biological data processing and analysis</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Hashing</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Planetary Motion Simulation</h3>
-                    <p class="text-gray-600 mb-4">Celestial body motion simulation using physics</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Three.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Graph Theory</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">AI Chemistry Lab Assistant</h3>
-                    <p class="text-gray-600 mb-4">Smart chemistry formula matching and analysis</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Vue.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Trie</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Earthquake Prediction System</h3>
-                    <p class="text-gray-600 mb-4">Seismic activity analysis and prediction</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">FastAPI</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Clustering</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Traffic Flow Optimization</h3>
-                    <p class="text-gray-600 mb-4">AI-powered traffic management system</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">MongoDB</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Dijkstra's</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Air Pollution Analysis</h3>
-                    <p class="text-gray-600 mb-4">Environmental data analysis and prediction</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Angular</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Trees</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Virtual Microscope</h3>
-                    <p class="text-gray-600 mb-4">Digital microscopy with image processing</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Image Processing</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Space Debris Tracking</h3>
-                    <p class="text-gray-600 mb-4">Orbital debris monitoring and prediction</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Graphs</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Brain MRI Analyzer</h3>
-                    <p class="text-gray-600 mb-4">AI-based medical image analysis</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Flask</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Linked Lists</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Full Stack Projects -->
-            <h3 class="text-2xl font-semibold mb-6 text-secondary">Full Stack Projects</h3>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Smart Code Autograder</h3>
-                    <p class="text-gray-600 mb-4">AI-powered code grading system for efficiency and correctness</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Node.js</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Real-Time Collaborative Code Editor</h3>
-                    <p class="text-gray-600 mb-4">Google Docs-like code editor with real-time collaboration</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Firebase</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">WebSockets</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">Secure Chat Application</h3>
-                    <p class="text-gray-600 mb-4">End-to-end encrypted chat using RSA and AES</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">WebSockets</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">MongoDB</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">File Version Control System</h3>
-                    <p class="text-gray-600 mb-4">Git-like system using Merkle trees and hashing</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">React</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="bg-light p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-2">E-commerce Search Ranking</h3>
-                    <p class="text-gray-600 mb-4">Product search with TF-IDF and Trie-based autocomplete</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Elasticsearch</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary rounded-full text-sm">PostgreSQL</span>
-                    </div>
-                </div>
-            </div>
+        <div class="proj-card">
+          <div class="proj-title">Two-Factor Data Security</div>
+          <div class="proj-desc">Cloud storage security with dual authentication for sensitive data.</div>
+          <div class="proj-tags"><span class="ptag">JSP</span><span class="ptag">MySQL</span></div>
         </div>
-    </section>
-
-    <!-- Mentorship Section -->
-    <section id="mentorship" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Mentorship Programs</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-light p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">1:1 Mentorship</h3>
-                    <p class="text-gray-600 mb-6">
-                        Personalized guidance for aspiring developers, focusing on career growth and technical skill development.
-                    </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Weekly 1:1 Sessions</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Code Review & Feedback</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Career Guidance</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-light p-8 rounded-lg">
-                    <h3 class="text-2xl font-semibold mb-4">Group Workshops</h3>
-                    <p class="text-gray-600 mb-6">
-                        Interactive group sessions focusing on specific technologies and best practices.
-                    </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Weekly Group Sessions</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Hands-on Projects</span>
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            <span>Peer Learning</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="proj-card">
+          <div class="proj-title">AI Chatbot</div>
+          <div class="proj-desc">Interactive chatbot built with AIML for natural language conversations.</div>
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Django</span><span class="ptag">AIML</span></div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-12" id="footer">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold">N. Narasimha Pillai</h3>
-                    <p class="text-gray-400 mt-2">Technical Educator & Mentor</p>
-                    <p class="test-gray-400 mt-2">narasimhaethics@gmail.com</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://github.com/narasimhaethics" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/n-narasimha-pillai-108341153" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                   
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 N. Narasimha Pillai. All rights reserved.</p>
-            </div>
+        <div class="proj-card">
+          <div class="proj-title">Recruitment Management System</div>
+          <div class="proj-desc">End-to-end talent acquisition and HR management solution.</div>
+          <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Django</span><span class="ptag">AngularJS</span></div>
         </div>
-    </footer>
+        <div class="proj-card">
+          <div class="proj-title">Online Library Management</div>
+          <div class="proj-desc">Digital cataloging and library resource management platform.</div>
+          <div class="proj-tags"><span class="ptag">Java</span><span class="ptag">Bootstrap</span></div>
+        </div>
+      </div>
+
+      <!-- 02 Freelance -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">02</div>
+        <div class="proj-cat-name">Freelance Projects</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-title">Honchi Website</div>
+          <div class="proj-desc">Full stack client website with responsive design and backend integration.</div>
+          <div class="proj-tags"><span class="ptag">Full Stack</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-title">SVPCET Portals</div>
+          <div class="proj-desc">Result, Grievances, and AAvishkaar portals for college management system.</div>
+          <div class="proj-tags"><span class="ptag">Django</span><span class="ptag">Web Portals</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-title">Redington Info Systems</div>
+          <div class="proj-desc">Enterprise template design and frontend implementation.</div>
+          <div class="proj-tags"><span class="ptag">UI/UX</span><span class="ptag">Frontend</span></div>
+        </div>
+      </div>
+
+      <!-- 03 DSA -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">03</div>
+        <div class="proj-cat-name">Mentored — Data Structures & Algorithms</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-title">Optimized Pathfinding Visualizer</div><div class="proj-desc">Interactive A*, Dijkstra, and Bellman-Ford visualization with real-time animations.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">D3.js</span><span class="ptag">Flask</span></div></div>
+        <div class="proj-card"><div class="proj-title">Stock Price Prediction Using Trees</div><div class="proj-desc">Stock trend analysis using Segment Trees and AVL Trees for forecasting.</div><div class="proj-tags"><span class="ptag">Django</span><span class="ptag">Pandas</span><span class="ptag">PostgreSQL</span></div></div>
+        <div class="proj-card"><div class="proj-title">Smart Route Planner</div><div class="proj-desc">Graph-based route optimization using A* and Dijkstra's algorithms.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Flask</span><span class="ptag">Neo4j</span></div></div>
+        <div class="proj-card"><div class="proj-title">Load Balancer Simulator</div><div class="proj-desc">Round Robin, Least Connections, and Weighted Load Balancing simulation.</div><div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">Redis</span></div></div>
+        <div class="proj-card"><div class="proj-title">Smart Caching System</div><div class="proj-desc">LFU, LRU, and MRU caching algorithm implementation and benchmarking.</div><div class="proj-tags"><span class="ptag">Redis</span><span class="ptag">Node.js</span><span class="ptag">React</span></div></div>
+      </div>
+
+      <!-- 04 Graphs -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">04</div>
+        <div class="proj-cat-name">Mentored — Graphs, Hashing & Backtracking</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-title">Optimized Faculty Substitution</div><div class="proj-desc">Dynamic leave management with priority queues and graph scheduling.</div><div class="proj-tags"><span class="ptag">Graphs</span><span class="ptag">Dijkstra's</span><span class="ptag">Heaps</span></div></div>
+        <div class="proj-card"><div class="proj-title">AI-Based Course Allocation</div><div class="proj-desc">Optimal faculty-course assignment via weighted bipartite graph matching.</div><div class="proj-tags"><span class="ptag">Graphs</span><span class="ptag">Hungarian Algo</span><span class="ptag">DP</span></div></div>
+        <div class="proj-card"><div class="proj-title">Automated Timetable Scheduling</div><div class="proj-desc">Conflict-free timetable generation using backtracking and graph coloring.</div><div class="proj-tags"><span class="ptag">Backtracking</span><span class="ptag">Graph Coloring</span></div></div>
+        <div class="proj-card"><div class="proj-title">Real-Time Attendance System</div><div class="proj-desc">Attendance tracking using Bloom Filters and advanced hashing techniques.</div><div class="proj-tags"><span class="ptag">Bloom Filters</span><span class="ptag">Hashing</span></div></div>
+        <div class="proj-card"><div class="proj-title">Campus Navigation System</div><div class="proj-desc">Graph-based shortest path finding for campus routing.</div><div class="proj-tags"><span class="ptag">Dijkstra's</span><span class="ptag">A* Search</span></div></div>
+        <div class="proj-card"><div class="proj-title">Adaptive E-Learning System</div><div class="proj-desc">AI-based learning with dynamic course recommendations via graph traversal.</div><div class="proj-tags"><span class="ptag">Trie</span><span class="ptag">Graphs</span></div></div>
+      </div>
+
+      <!-- 05 Trees -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">05</div>
+        <div class="proj-cat-name">Mentored — Tree Data Structures</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-title">Organization Hierarchy Management</div><div class="proj-desc">Tree-based org structure management with D3 visualization.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">MongoDB</span></div></div>
+        <div class="proj-card"><div class="proj-title">BST Visualizer</div><div class="proj-desc">Interactive Binary Search Tree operations with step-by-step animations.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">FastAPI</span><span class="ptag">PostgreSQL</span></div></div>
+        <div class="proj-card"><div class="proj-title">Decision Tree Chatbot</div><div class="proj-desc">Tree-based conversational AI with NLP integration.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">FastAPI</span><span class="ptag">Neo4j</span></div></div>
+        <div class="proj-card"><div class="proj-title">File System Explorer</div><div class="proj-desc">Tree-based file navigation system with role-based access control.</div><div class="proj-tags"><span class="ptag">Next.js</span><span class="ptag">Express</span><span class="ptag">MongoDB</span></div></div>
+        <div class="proj-card"><div class="proj-title">Threaded Discussion Forum</div><div class="proj-desc">Tree-based nested comment and reply system for online discussion.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">PostgreSQL</span></div></div>
+        <div class="proj-card"><div class="proj-title">Medical Diagnosis System</div><div class="proj-desc">Decision tree-based diagnostic platform for symptom analysis.</div><div class="proj-tags"><span class="ptag">Flask</span><span class="ptag">React</span><span class="ptag">PostgreSQL</span></div></div>
+      </div>
+
+      <!-- 06 Scientific -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">06</div>
+        <div class="proj-cat-name">Mentored — Scientific & AI Projects</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-title">Genetic Algorithm Optimizer</div><div class="proj-desc">Optimization system using genetic algorithms and dynamic programming.</div><div class="proj-tags"><span class="ptag">Angular</span><span class="ptag">Django</span><span class="ptag">Graphs</span></div></div>
+        <div class="proj-card"><div class="proj-title">DNA Sequence Matcher</div><div class="proj-desc">Efficient DNA matching using KMP algorithm and Trie structures.</div><div class="proj-tags"><span class="ptag">Next.js</span><span class="ptag">Flask</span><span class="ptag">Trie</span></div></div>
+        <div class="proj-card"><div class="proj-title">Neural Network Visualizer</div><div class="proj-desc">Interactive neural architecture visualization using linked list traversal.</div><div class="proj-tags"><span class="ptag">Vue.js</span><span class="ptag">Flask</span><span class="ptag">Linked Lists</span></div></div>
+        <div class="proj-card"><div class="proj-title">Pathogen Spread Simulation</div><div class="proj-desc">Epidemic modeling and spread analysis using BFS/DFS graph algorithms.</div><div class="proj-tags"><span class="ptag">Flask</span><span class="ptag">D3.js</span><span class="ptag">BFS/DFS</span></div></div>
+        <div class="proj-card"><div class="proj-title">Traffic Flow Optimization</div><div class="proj-desc">AI-powered traffic management system using Dijkstra's algorithm.</div><div class="proj-tags"><span class="ptag">Flask</span><span class="ptag">MongoDB</span><span class="ptag">Dijkstra's</span></div></div>
+        <div class="proj-card"><div class="proj-title">Brain MRI Analyzer</div><div class="proj-desc">AI-based medical image analysis using advanced data structures.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Flask</span><span class="ptag">Image Processing</span></div></div>
+      </div>
+
+      <!-- 07 Full Stack -->
+      <div class="proj-cat-header">
+        <div class="proj-cat-num">07</div>
+        <div class="proj-cat-name">Mentored — Full Stack Projects</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-title">Smart Code Autograder</div><div class="proj-desc">AI-powered code grading system evaluating efficiency and correctness.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">MongoDB</span></div></div>
+        <div class="proj-card"><div class="proj-title">Real-Time Collaborative Code Editor</div><div class="proj-desc">Google Docs-like code editor with WebSocket-based multi-user collaboration.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">WebSockets</span></div></div>
+        <div class="proj-card"><div class="proj-title">Secure Chat Application</div><div class="proj-desc">End-to-end encrypted messaging using RSA and AES cryptographic algorithms.</div><div class="proj-tags"><span class="ptag">React</span><span class="ptag">WebSockets</span><span class="ptag">MongoDB</span></div></div>
+        <div class="proj-card"><div class="proj-title">File Version Control System</div><div class="proj-desc">Git-inspired system using Merkle trees and cryptographic hashing.</div><div class="proj-tags"><span class="ptag">Django</span><span class="ptag">React</span><span class="ptag">PostgreSQL</span></div></div>
+        <div class="proj-card"><div class="proj-title">E-commerce Search Ranking</div><div class="proj-desc">Product search engine with TF-IDF scoring and Trie-based autocomplete.</div><div class="proj-tags"><span class="ptag">Elasticsearch</span><span class="ptag">Django</span><span class="ptag">PostgreSQL</span></div></div>
+      </div>
+    </div>
+
+    <!-- MENTORSHIP -->
+    <div class="section-card" id="mentor-sec">
+      <div class="sc-header">
+        <div class="sc-title">
+          <div class="sc-title-icon">🎯</div>
+          Mentorship Programs
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="mentor-grid">
+          <div class="mentor-card">
+            <div class="mc-head">
+              <div class="mc-icon">👤</div>
+              <div class="mc-title">1:1 Mentorship</div>
+            </div>
+            <div class="mc-desc">Personalized guidance for aspiring developers — focused on career growth and deep technical skill development, tailored to your pace and goals.</div>
+            <ul class="mc-features">
+              <li>Weekly 1:1 Sessions</li>
+              <li>Code Review & Detailed Feedback</li>
+              <li>Career Guidance & Roadmapping</li>
+            </ul>
+          </div>
+          <div class="mentor-card">
+            <div class="mc-head">
+              <div class="mc-icon" style="background:var(--teal);">👥</div>
+              <div class="mc-title">Group Workshops</div>
+            </div>
+            <div class="mc-desc">Interactive group sessions focused on specific technologies, best practices, and real-world project delivery through collaborative learning.</div>
+            <ul class="mc-features">
+              <li>Weekly Group Sessions</li>
+              <li>Hands-on Project Work</li>
+              <li>Peer Learning & Collaboration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">N. Narasimha Pillai</div>
+      <div class="footer-brand-sub">Technical Educator · Full Stack Developer · M.Tech CSE</div>
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/narasimhaethics" target="_blank" title="GitHub">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 013.01-.4c1.02.005 2.05.14 3.01.4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/n-narasimha-pillai-108341153" target="_blank" title="LinkedIn">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+      </a>
+      <a href="mailto:narasimhaethics@gmail.com" title="Email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2024 N. Narasimha Pillai. All rights reserved.</div>
+</footer>
+
 </body>
-</html> 
+</html>
